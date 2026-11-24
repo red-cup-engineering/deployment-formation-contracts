@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://red-cup-engineering.invalid/schemas/public-delivery-formation.schema.json",
+  "type": "object",
+  "required": ["type", "formationType", "customer", "formationDigest", "artifactDigest", "targetDigest", "executionMode", "exactEffects"],
+  "properties": {
+    "type": {"const": "PublicDeliverySolicitation"},
+    "formationType": {"const": "PublicDeliveryFormation"},
+    "customer": {"type": "string", "minLength": 1},
+    "formationDigest": {"type": "string", "pattern": "^ni:///sha-256;"},
+    "artifactDigest": {"type": "string", "pattern": "^ni:///sha-256;"},
+    "targetDigest": {"type": "string", "pattern": "^ni:///sha-256;"},
+    "executionMode": {"enum": ["dry-run", "live"]},
+    "exactEffects": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "additionalProperties": false
+}
